@@ -23,7 +23,7 @@ def get_final_response(user_input: str):
 
     for event in graph.stream({"messages": [("user", user_input)]}):
         for value in event.values():
-            message_content = value["messages"][-1].content
+            message_content = value["messages"][-1].pretty_print()
             full_response += message_content  # Accumulate the full response
             intermediate_steps.append(message_content) # Store each step
     return message_content, intermediate_steps
